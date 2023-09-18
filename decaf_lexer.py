@@ -4,13 +4,39 @@
 #
 # -------------------------------------------------------------------
 
+# reserved keywords
+reserved = {
+    "boolean" : "BOOLEAN",
+    "break" : "BREAK",
+    "continue" : "CONTINUE",
+    "class" : "CLASS",
+    "do" : "DO",
+    "else" : "ELSE",
+    "extends" : "EXTENDS",
+    "false" : "FALSE",
+    "float" : "FLOAT",
+    "for" : "FOR",
+    "if" : "IF",
+    "int" : "INT",
+    "new" : "NEW",
+    "null" : "NULL",
+    "private" : "PRIVATE",
+    "public" : "PUBLIC",
+    "return" : "RETURN",
+    "static" : "STATIC",
+    "super" : "SUPER",
+    "this" : "THIS",
+    "true" : "TRUE",
+    "void" : "VOID",
+    "while" : "WHILE"
+}
+
+
 # token tuple
-tokens = ("IDENTIFIER", # name
+tokens = ["IDENTIFIER", # name
           "INTEGER_CONSTANT", #constants
           "FLOAT_CONSTANT",
           "STRING_CONSTANT",
-          # insert keywords ->>>>> what to do ??? 
-
           # syntax stuff and operators
           "LEFT_CURLY_BRACE", # {
           "RIGHT_CURLY_BRACE", # }
@@ -32,6 +58,24 @@ tokens = ("IDENTIFIER", # name
           "NEGATION_OPERATOR", # ! negation
           "LOGICAL_AND_OPERATOR", # && AND
           "LOGICAL_OR_OPERATOR", # || operator
-          )
+          ]
 
-# build the lexer
+tokens = tokens + list(reserved.values())
+
+# token specifications
+
+def t_IDENTIFIER(t):
+    r'[a-zA-Z][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value, "IDENTIFIER") # check for reserved keywords
+    return t
+
+# build the lexer for testing purposes (delete later please)
+
+import ply.lex as lex
+# lexer = lex.lex()
+
+# lexer.input("test.txt")
+# next_token = lexer.token()
+# while next_token != None:
+#     print(next_token)
+#     next_token = lexer.token()
