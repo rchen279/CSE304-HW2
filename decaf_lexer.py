@@ -32,32 +32,33 @@ reserved = {
 }
 
 
-# token tuple
-tokens = ["IDENTIFIER", # name
-          "INTEGER_CONSTANT", #constants
-          "FLOAT_CONSTANT",
-          "STRING_CONSTANT",
+# token tuple -> to modify
+tokens = ["ID", # identifier
+          "INT_CONST", #constants
+          "FLOAT_CONST",
+          "STRING_CONST",
           # syntax stuff and operators
-          "LEFT_CURLY_BRACE", # {
-          "RIGHT_CURLY_BRACE", # }
-          "LEFT_PARENTHESIS", # (
-          "RIGHT_PARENTHESIS", # )
-          "ASSIGNMENT_OPERATOR", # =
-          "POST_INCREMENT_OPERATOR", # X++
-          "POST_DECREMENT_OPERATOR", # X--
+          "L_CURLY_BRACE", # {
+          "R_CURLY_BRACE", # }
+          "L_PAREN", # (
+          "R_PAREN", # )
+          "SEMI_COLON", # ;
+          "ASSIGNMENT_OP", # =
+          "POST_INCR_OP", # X++
+          "POST_DECR_OP", # X--
           "PLUS", # + for addition, unary plus
           "MINUS", # - for subtraction, unary minus
           "TIMES", # * for multiplication
           "DIVIDE", # / for division
-          "EQUALITY_OPERATOR", # == equality check
-          "DISEQUALITY_OPERATOR", # != inequality
-          "LESS_THAN_OPERATOR", # < less than
-          "GREATER_THAN_OPERATOR", # > greater than
-          "GREATER_THAN_EQUAL_TO_OPERATOR", # >=
-          "LESS_THAN_EQUAL_TO_OPERATOR", # <=
-          "NEGATION_OPERATOR", # ! negation
-          "LOGICAL_AND_OPERATOR", # && AND
-          "LOGICAL_OR_OPERATOR", # || operator
+          "EQUALITY_OP", # == equality check
+          "DISEQUALITY_OP", # != inequality
+          "L_THAN_OP", # < less than
+          "G_THAN_OP", # > greater than
+          "G_THAN_EQUAL_TO_OP", # >=
+          "L_THAN_EQUAL_TO_OP", # <=
+          "NEG_OP", # ! negation
+          "LOGICAL_AND_OP", # && AND
+          "LOGICAL_OR_OP", # || operator
           ]
 
 tokens = tokens + list(reserved.values())
@@ -66,7 +67,7 @@ tokens = tokens + list(reserved.values())
 
 def t_IDENTIFIER(t):
     r'[a-zA-Z][a-zA-Z0-9_]*'
-    t.type = reserved.get(t.value, "IDENTIFIER") # check for reserved keywords
+    t.type = reserved.get(t.value, "ID") # check for reserved keywords
     return t
 
 # build the lexer for testing purposes (delete later please)
