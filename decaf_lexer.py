@@ -138,6 +138,7 @@ def t_COMMENT_SINGLE_LINE(t):
 
 # build the lexer for testing purposes (delete later please)
 
+'''
 import ply.lex as lex
 lexer = lex.lex()
 
@@ -159,7 +160,6 @@ lexer.input(
     return 0;
 }
     """
-    # '''
     # class rfib{
     #     static int fib(int n) {
     #         if (n <= 2)
@@ -176,10 +176,10 @@ lexer.input(
     #         Out.print("\n");
     #         }
     #     }
-    # '''
 )
 next_token = lexer.token()
 while next_token != None:
     print(next_token)
     next_token = lexer.token()
 
+'''
