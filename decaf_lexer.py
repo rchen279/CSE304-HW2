@@ -4,6 +4,8 @@
 #
 # -------------------------------------------------------------------
 # reserved keywords
+import sys
+
 reserved = {
     "boolean" : "BOOLEAN",
     "break" : "BREAK",
@@ -69,9 +71,9 @@ tokens = tokens + list(reserved.values())
 # regular expression rules for simple tokens (not sure if this is right)
 
 # longer expressions come first
-t_STRING_CONST = r"\"(\w|\s)+\""
-t_L_CURLY_BRACE = r"\{"
-t_R_CURLY_BRACE = r"\}"
+t_STRING_CONST = r"\".*\""
+t_L_CURLY_BRACE = r"{"
+t_R_CURLY_BRACE = r"}"
 t_L_PAREN = r"\("
 t_R_PAREN = r"\)"
 t_SEMI_COLON = r";"
@@ -94,7 +96,7 @@ t_L_THAN_OP = r"<"
 t_G_THAN_OP = r">"
 t_NEG_OP = r"!"
 t_COMMA = r",";
-t_DOT = r".";
+t_DOT = r"\.";
 
 # regular expression rule with action code
 def t_IDENTIFIER(t):
@@ -125,7 +127,8 @@ t_ignore = " \t\n"
 # scanning errors
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+    # t.lexer.skip(1)
+    sys.exit()
 
 # ignoring comments
 

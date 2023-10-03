@@ -1,6 +1,6 @@
 # get tokens from lexer
 from decaf_lexer import tokens
-
+import sys
 # define grammar rules
 # starting rule -- program
 def p_program(p):
@@ -287,3 +287,4 @@ def p_stmt_expr(p):
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
+    sys.exit()
