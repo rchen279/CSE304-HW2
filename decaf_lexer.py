@@ -9,7 +9,7 @@ reserved = {
     "break" : "BREAK",
     "continue" : "CONTINUE",
     "class" : "CLASS",
-    "do" : "DO",
+    # "do" : "DO",
     "else" : "ELSE",
     "extends" : "EXTENDS",
     "false" : "FALSE",
@@ -44,8 +44,8 @@ tokens = ["ID", # identifier
           "R_PAREN", # )
           "SEMI_COLON", # ;
           "ASSIGNMENT_OP", # =
-          "POST_INCR_OP", # X++
-          "POST_DECR_OP", # X--
+          "INCR_OP", # X++
+          "DECR_OP", # X--
           "PLUS", # + for addition, unary plus
           "MINUS", # - for subtraction, unary minus
           "TIMES", # * for multiplication
@@ -58,7 +58,10 @@ tokens = ["ID", # identifier
           "L_THAN_EQUAL_TO_OP", # <=
           "NEG_OP", # ! negation
           "LOGICAL_AND_OP", # && AND
-          "LOGICAL_OR_OP" # || operator
+          "LOGICAL_OR_OP", # || operator
+
+          "COMMA",
+          "DOT"
           ]
 
 tokens = tokens + list(reserved.values())
@@ -72,8 +75,8 @@ t_R_CURLY_BRACE = r"\}"
 t_L_PAREN = r"\("
 t_R_PAREN = r"\)"
 t_SEMI_COLON = r";"
-t_POST_INCR_OP = r"\+\+"
-t_POST_DECR_OP = r"--"
+t_INCR_OP = r"\+\+"
+t_DECR_OP = r"--"
 t_G_THAN_EQUAL_TO_OP = r">="
 t_L_THAN_EQUAL_TO_OP = r"<="
 t_EQUALITY_OP = r"=="
@@ -90,7 +93,8 @@ t_DIVIDE = r"/"
 t_L_THAN_OP = r"<"
 t_G_THAN_OP = r">"
 t_NEG_OP = r"!"
-
+t_COMMA = r",";
+t_DOT = r".";
 
 # regular expression rule with action code
 def t_IDENTIFIER(t):
@@ -135,51 +139,3 @@ def t_COMMENT_MULTI_LINE(t):
 def t_COMMENT_SINGLE_LINE(t):
     r"\/\/[^\n]*"
     pass
-
-# build the lexer for testing purposes (delete later please)
-
-'''
-import ply.lex as lex
-lexer = lex.lex()
-
-lexer.input(
-    """
-    int main() {
-        /* This is a multi-line comment */
-        int a = 10; // This is a single-line comment
-
-        // Another single-line comment
-        for (int i = 0; i < 5; i++) {
-            a++; // Increment a
-        }
-
-        /* A
-        multi-line
-        comment
-        */
-    return 0;
-}
-    """
-    # class rfib{
-    #     static int fib(int n) {
-    #         if (n <= 2)
-    #             return 1;
-    #         else
-    #             return fib(n-1) + fib(n-2);
-
-    #     }
-    #     public static void main() {
-    #         int n;
-    #         n = In.scan_int();
-    #         Out.print("Fib = ");
-    #         Out.print(fib(n));
-    #         Out.print("\n");
-    #         }
-    #     }
-)
-next_token = lexer.token()
-while next_token != None:
-    print(next_token)
-    next_token = lexer.token()
-
-'''

@@ -36,11 +36,11 @@ def main():
     source = fh.read()
     fh.close()
     result = parser.parse(source, lexer = lexer, debug = 1)
-    #print(result)
+    print(result)
     # Parsing Successful
-    #print()
+    print()
     print("YES")
-    #print()
+    print()
 
 if __name__ == "__main__":
     just_scan()
