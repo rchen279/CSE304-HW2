@@ -1,3 +1,10 @@
+# Ryan Chen 
+# ryachen
+# 113200236
+
+# Weihao Zou
+# wezou
+# 114428592
 # ----------------------------------------------------------------
 # Scanner for decaf
 #
@@ -95,8 +102,8 @@ t_DIVIDE = r"/"
 t_L_THAN_OP = r"<"
 t_G_THAN_OP = r">"
 t_NEG_OP = r"!"
-t_COMMA = r",";
-t_DOT = r"\.";
+t_COMMA = r","
+t_DOT = r"\."
 
 # regular expression rule with action code
 def t_IDENTIFIER(t):

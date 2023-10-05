@@ -1,3 +1,11 @@
+# Ryan Chen 
+# ryachen
+# 113200236
+
+# Weihao Zou
+# wezou
+# 114428592
+
 import sys
 import ply.lex as lex
 import ply.yacc as yacc

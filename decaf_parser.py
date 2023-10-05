@@ -1,3 +1,10 @@
+# Ryan Chen 
+# ryachen
+# 113200236
+
+# Weihao Zou
+# wezou
+# 114428592
 # get tokens from lexer
 from decaf_lexer import tokens
 import sys
@@ -94,14 +101,16 @@ def p_variable(p):
 
 def p_method_decl(p):
     '''
-    method_decl : modifier type_or_void ID  L_PAREN zero_or_one_formals R_PAREN block
+    method_decl : modifier type ID  L_PAREN zero_or_one_formals R_PAREN block
+                |   modifier VOID ID  L_PAREN zero_or_one_formals R_PAREN block
+    
     '''
 
-def p_type_or_void(p):
-    '''
-    type_or_void : type
-                | VOID
-    '''
+# def p_types(p):
+#     '''
+#     types : VOID
+#         | type
+#     '''
 def p_zero_or_one_formals(p):
     '''
     zero_or_one_formals : formals
@@ -287,4 +296,6 @@ def p_stmt_expr(p):
 # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
+    print("Illegal Character '%s', at %d , %d" % (p.value[0], p.lineno, p.lexpos))
+    print()
     sys.exit()
